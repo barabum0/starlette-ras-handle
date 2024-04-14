@@ -11,7 +11,7 @@ from starlette.types import ASGIApp, Scope, Receive, Send, Message, HTTPExceptio
 from starlette.websockets import WebSocket
 
 RASHandler = typing.Callable[
-    [BaseException, Request | WebSocket], typing.Awaitable[None]
+    [BaseException, Request | WebSocket], typing.Coroutine[typing.Any, typing.Any, None]
 ]
 
 
@@ -25,6 +25,7 @@ def build_patch(ras_handler: RASHandler):
             exception_handlers, status_handlers = {}, {}
 
         async def wrapped_app(scope: Scope, receive: Receive, send: Send) -> None:
+            nonlocal conn
             response_started = False
 
             async def sender(message: Message) -> None:
@@ -49,7 +50,7 @@ def build_patch(ras_handler: RASHandler):
                     raise exc
 
                 if response_started:
-                    await ras_handler(exc)
+                    await ras_handler(exc, conn)
                     return
 
                 if scope["type"] == "http":
