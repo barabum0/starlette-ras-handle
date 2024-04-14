@@ -13,6 +13,7 @@ starlette = "^0.37.2"
 
 [tool.poetry.group.examples.dependencies]
 fastapi = "^0.110.1"
+uvicorn = "^0.29.0"
 
 [build-system]
 requires = ["poetry-core"]
