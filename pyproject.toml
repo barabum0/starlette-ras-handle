@@ -11,6 +11,9 @@ python = "^3.10"
 starlette = "^0.37.2"
 
 
+[tool.poetry.group.examples.dependencies]
+fastapi = "^0.110.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
