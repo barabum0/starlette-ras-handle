@@ -25,7 +25,6 @@ def build_patch(ras_handler: RASHandler):
             exception_handlers, status_handlers = {}, {}
 
         async def wrapped_app(scope: Scope, receive: Receive, send: Send) -> None:
-            nonlocal conn
             response_started = False
 
             async def sender(message: Message) -> None:
@@ -38,6 +37,7 @@ def build_patch(ras_handler: RASHandler):
             try:
                 await app(scope, receive, sender)
             except Exception as exc:
+                nonlocal conn
                 handler = None
 
                 if isinstance(exc, HTTPException):
@@ -50,11 +50,10 @@ def build_patch(ras_handler: RASHandler):
                     raise exc
 
                 if response_started:
-                    await ras_handler(exc, conn)
+                    await ras_handler(exc, conn) # type: ignore[used-before-def]
                     return
 
                 if scope["type"] == "http":
-                    nonlocal conn
                     handler = typing.cast(HTTPExceptionHandler, handler)
                     conn = typing.cast(Request, conn)
                     if is_async_callable(handler):
