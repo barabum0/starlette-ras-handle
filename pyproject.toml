@@ -15,6 +15,10 @@ starlette = "^0.37.2"
 fastapi = "^0.110.1"
 uvicorn = "^0.29.0"
 
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.9.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
