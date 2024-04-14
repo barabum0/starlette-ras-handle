@@ -11,7 +11,7 @@ from starlette.types import ASGIApp, Scope, Receive, Send, Message, HTTPExceptio
 from starlette.websockets import WebSocket
 
 RASHandler = typing.Callable[
-    [BaseException], typing.Awaitable[None]
+    [BaseException, Request | WebSocket], typing.Awaitable[None]
 ]
 
 
