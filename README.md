@@ -28,7 +28,7 @@ python -m pip install -U starlette-ras-handle
     ```python
     from handler import print_handler
     
-    from src.starlette_ras_handle import handle_starlette_ras
+    from starlette_ras_handle import handle_starlette_ras
     handle_starlette_ras(print_handler)
     
     # other imports...
