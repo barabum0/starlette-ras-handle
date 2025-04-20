@@ -15,8 +15,6 @@ examples = [
     "fastapi>=0.115.12",
     "uvicorn>=0.34.2",
 ]
-
-[dependency-groups]
 dev = [
     "mypy>=1.15.0",
     "pre-commit>=4.2.0",
