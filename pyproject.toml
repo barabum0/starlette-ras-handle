@@ -2,10 +2,9 @@
 name = "starlette-ras-handle"
 version = "1.0.2"
 description = "This library patches starlette, so you can handle \"RuntimeError: Caught handled exception, but response already started.\" exception"
-authors = ["sushka <r.m.poltorabatko@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "starlette>=0.46.2",
 ]
